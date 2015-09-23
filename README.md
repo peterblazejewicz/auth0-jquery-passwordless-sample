@@ -2,11 +2,16 @@
 
 This sample shows how you can use passwordless authentication in your single page application.
 
+## Setup
+
+You need to configure your app in the dashboard to use passwordless authentication
+TODO: link to doc
+
 ## Running the example
 
 In order to run the example you need to:
 
-1. Create an auth0-variables.js file with your Auth0 credentials. You can use auth0-variables.js as a template.
+1. Create an auth0-variables.js file with your Auth0 credentials. You can use auth0-variables.sample.js as a template.
 2. Install node
 3. run `npm install -g serve`
 4. run `serve` in the project's folder to start a server
