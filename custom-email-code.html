@@ -46,17 +46,16 @@
 
     <script src="https://cdn.auth0.com/w2/auth0-6.6.js"></script>
     <script type="text/javascript">
-      'use strict';
       // Initialize Auth0 Client instance
-      const auth0 = new Auth0({
+      var auth0 = new Auth0({
         // All these properties are set in auth0-variables.js
         clientID: AUTH0_CLIENT_ID,
         domain: AUTH0_DOMAIN
       });
 
       function sendEmail(){
-        const email = $('input.email').val();
-        auth0.startPasswordless({ email, send: 'code' }, err => {
+        var email = $('input.email').val();
+        auth0.startPasswordless({ email:email, send: 'code' }, function(err) {
           if (err) {
             console.log('error sending e-mail',err.error_description);
             alert(`error sending e-mail: ${err.error_description}`);
@@ -69,17 +68,17 @@
       }
 
       function login(){
-        const username = $('input.email').val();
-        const password= $('input.code').val();
+        var username = $('input.email').val();
+        var password= $('input.code').val();
 
         //submit the passcode to complete authentication
         auth0.login(
           {
-            connection:'email',
-            username,
-            password,
-            'sso':false
-          },(err, profile, id_token, access_token) => {
+            connection: 'email',
+            username: username,
+            password: password,
+            sso: false
+          },function(err, profile, id_token, access_token) {
             if (err){
               console.log('error logging-in',err);
               alert(`Couldn't login ${err.message}`);

@@ -37,13 +37,13 @@
     <script src="https://cdn.auth0.com/w2/auth0-6.6.js"></script>
     <script type="text/javascript">
       // Initialize Passwordless Lock instance
-      const lock = new Auth0LockPasswordless(
+      var lock = new Auth0LockPasswordless(
         // All these properties are set in auth0-variables.js
         AUTH0_CLIENT_ID,
         AUTH0_DOMAIN
       );
 
-      const auth0 = new Auth0({
+      var auth0 = new Auth0({
         // All these properties are set in auth0-variables.js
         clientID: AUTH0_CLIENT_ID,
         domain: AUTH0_DOMAIN
@@ -53,9 +53,9 @@
         lock.magiclink();
       }
 
-      $(document).ready(() => {
+      $(document).ready(function() {
 
-        const hash = auth0.parseHash(window.location.hash);
+        var hash = auth0.parseHash(window.location.hash);
 
         if (hash && hash.id_token) {
           //save the token in local storage:

@@ -35,7 +35,7 @@
     <script src="https://cdn.auth0.com/js/lock-passwordless-0.js"></script>
     <script type="text/javascript">
       // Initialize Passwordless Lock instance
-      const lock = new Auth0LockPasswordless(
+      var lock = new Auth0LockPasswordless(
         // All these properties are set in auth0-variables.js
         AUTH0_CLIENT_ID,
         AUTH0_DOMAIN
@@ -44,7 +44,7 @@
       function login(){
         // Open the lock in Email Code mode with the ability to handle
         // the authentication in page
-        lock.emailcode((err, profile, id_token, state) => {
+        lock.emailcode(function(err, profile, id_token, state) {
           if (!err) {
             console.log('profile',profile);
             console.log('id_token',profile);
