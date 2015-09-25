@@ -1,39 +1,85 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="https://cdn.auth0.com/js/lock-passwordless-0.js"></script>
-        <script src="https://cdn.auth0.com/w2/auth0-6.6.js"></script>
-        
-        <script src="//use.typekit.net/iws6ohy.js"></script>
-        <script>try{Typekit.load();}catch(e){}</script>
+  <head>
+    <meta charset="utf-8">   
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-        <!-- font awesome from BootstrapCDN -->
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="//use.typekit.net/iws6ohy.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
 
-        <script src="auth0-variables.js"> </script>
-        <script src="lock-magic-link.js"> </script>
-        <link href="app.css" rel="stylesheet">
-    </head>
-    <body class="home">
-        <div class="container">
-            <div class="login-page clearfix">
-              <div class="login-box auth0-box before">
-                <img src="https://i.cloudup.com/StzWWrY34s.png" />
-                <h3>Auth0 Passwordless Example</h3>
-                <p>Login with a Magic Link sent by Email</p>
-                <button onclick="login()" class="btn btn-primary btn-lg btn-login btn-block">SignIn</button>
-              </div>
-              <div class="logged-in-box auth0-box logged-in" style="display: none;">
-                <h1 id="logo"><img src="auth0_logo_final_blue_RGB.png" /></h1>
-                <img class="avatar"/>
-                <h2>Welcome <span class="nickname"></span></h2>
-              </div>
-            </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- font awesome from BootstrapCDN -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="auth0-variables.js"> </script>
+    <link href="app.css" rel="stylesheet">
+  </head>
+  <body class="home">
+    <div class="container">
+      <div class="login-page clearfix">
+        <div class="login-box auth0-box before">
+          <img src="https://i.cloudup.com/StzWWrY34s.png" />
+          <h3>Auth0 Passwordless Example</h3>
+          <p>Login with a Magic Link sent by Email</p>
+          <button onclick="login()" class="btn btn-primary btn-lg btn-login btn-block">SignIn</button>
         </div>
-    </body>
+        <div class="logged-in-box auth0-box logged-in" style="display: none;">
+          <h1 id="logo"><img src="auth0_logo_final_blue_RGB.png" /></h1>
+          <img class="avatar"/>
+          <h2>Welcome <span class="nickname"></span></h2>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.auth0.com/js/lock-passwordless-0.js"></script>
+    <script src="https://cdn.auth0.com/w2/auth0-6.6.js"></script>
+    <script type="text/javascript">
+      // Initialize Passwordless Lock instance
+      const lock = new Auth0LockPasswordless(
+        // All these properties are set in auth0-variables.js
+        AUTH0_CLIENT_ID,
+        AUTH0_DOMAIN
+      );
+
+      const auth0 = new Auth0({
+        // All these properties are set in auth0-variables.js
+        clientID: AUTH0_CLIENT_ID,
+        domain: AUTH0_DOMAIN
+      });
+
+      function login(){
+        lock.magiclink();
+      }
+
+      $(document).ready(() => {
+
+        const hash = auth0.parseHash(window.location.hash);
+
+        if (hash && hash.id_token) {
+          //save the token in local storage:
+          localStorage.setItem('id_token', hash.id_token);
+          console.log('hash',hash);
+          $('.login-box').hide();
+          $('.logged-in-box').show();
+          //retrieve profile
+          auth0.getProfile(hash.id_token, function (err, profile) {
+            if (err){
+              console.log('err',err);
+              alert(`There was an error retrieving your profile: ${err.message}`);
+            } else {
+              localStorage.setItem('profile', profile);
+              $('.nickname').text(profile.name);
+              $('.avatar').attr('src', profile.picture);
+            }
+          });
+        }
+
+        if (hash && hash.error) {
+          alert('There was an error: ' + hash.error + '\n' + hash.error_description);
+        }
+      });
+    </script>
+  </body>
 </html>
