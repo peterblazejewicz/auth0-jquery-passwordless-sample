@@ -15,7 +15,7 @@ $(document).ready(() => {
     domain: AUTH0_DOMAIN
   });
 
-  var hash = auth0.parseHash(window.location.hash);
+  const hash = auth0.parseHash(window.location.hash);
 
   if (hash && hash.id_token) {
     //save the token in local storage:

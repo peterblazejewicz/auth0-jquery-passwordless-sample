@@ -19,7 +19,7 @@ function sendEmail(){
       return;
     }
     // the request was successful and you should 
-    // receive the magic link to the specified email
+    // receive the code to the specified email
     $(".enter-code").show();
   });
 }
@@ -28,7 +28,7 @@ function login(){
   const username = $('input.email').val();
   const password= $('input.code').val();
 
-  //submit the passcode to authenticate the phone
+  //submit the passcode to complete authentication
   auth0.login(
     {
       connection:'email',

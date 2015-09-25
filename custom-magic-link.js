@@ -25,9 +25,6 @@ function sendMagicLink(){
   });
 }
 
-/**
-* Auth0 UI - Auth0LockPasswordless
-*/
 $(document).ready(() => {
   var hash = auth0.parseHash(window.location.hash);
 
