@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <script src="https://cdn.auth0.com/w2/auth0-6.6.js"></script>
+    <script src="https://cdn.auth0.com/w2/auth0-6.7.min.js"></script>
     <script type="text/javascript">
       // Initialize Auth0 Client instance
       var auth0 = new Auth0({
@@ -55,7 +55,7 @@
 
       function sendEmail(){
         var email = $('input.email').val();
-        auth0.startPasswordless({ email:email, send: 'code' }, function(err) {
+        auth0.requestEmailCode({ email:email }, function(err) {
           if (err) {
             console.log('error sending e-mail',err.error_description);
             alert(`error sending e-mail: ${err.error_description}`);
@@ -63,25 +63,20 @@
           }
           // the request was successful and you should 
           // receive the code to the specified email
-          $(".enter-code").show();
+          $('.enter-email').hide();
+          $('.enter-code').show();
         });
       }
 
       function login(){
-        var username = $('input.email').val();
-        var password= $('input.code').val();
+        var email = $('input.email').val();
+        var code= $('input.code').val();
 
         //submit the passcode to complete authentication
-        auth0.login(
-          {
-            connection: 'email',
-            username: username,
-            password: password,
-            sso: false
-          },function(err, profile, id_token, access_token) {
+        auth0.verifyEmailCode({ email: email, code: code }, function(err, profile, id_token, access_token) {
             if (err){
               console.log('error logging-in',err);
-              alert(`Couldn't login ${err.message}`);
+              alert('Couldn\'t login ' + err.message);
             } else {
               console.log('profile',profile);
               console.log('id_token',id_token);

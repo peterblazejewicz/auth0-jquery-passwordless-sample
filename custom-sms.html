@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <script src="https://cdn.auth0.com/w2/auth0-6.6.js"></script>
+    <script src="https://cdn.auth0.com/w2/auth0-6.7.min.js"></script>
     <script type="text/javascript">
 
       // Initialize Auth0 Client instance
@@ -55,9 +55,8 @@
 
       function sendSMS(){
         var phoneNumber = $('input.phone-number').val();
-        auth0.startPasswordless({ phoneNumber: phoneNumber}, function(err) {
+        auth0.requestSMSCode({ phoneNumber: phoneNumber}, function(err) {
           if (err) {
-            console.log('error sending SMS',err.error_description);
             alert('error sending SMS: '+ err.error_description);
             return;
           }
@@ -69,12 +68,11 @@
       }
 
       function login(){
-        var phone = $('input.phone-number').val();
-        var passcode = $('input.code').val();
+        var phoneNumber = $('input.phone-number').val();
+        var code = $('input.code').val();
         //submit the passcode to authenticate the phone
-        auth0.login({phone:phone,passcode:passcode},function(err, profile, id_token, access_token){
+        auth0.verifySMSCode({ phoneNumber: phoneNumber, code: code }, function (err, profile, id_token, access_token) {
           if (err){
-            console.log('error logging-in',err);
             alert('Couldn\'t login '+ err.message);
           } else {
             console.log('profile',profile);

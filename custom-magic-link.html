@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <script src="https://cdn.auth0.com/w2/auth0-6.6.js"></script>
+    <script src="https://cdn.auth0.com/w2/auth0-6.7.min.js"></script>
     <script type="text/javascript">
       
       // Initialize Auth0 Client instance
@@ -54,23 +54,25 @@
 
       function sendMagicLink(){
         var email = $('input.email').val();
-        auth0.startPasswordless({email:email}, function(err) {
+        auth0.requestMagicLink({ email: email }, function(err) {
           if (err) {
-            console.log('error sending e-mail',err.error_description);
-            alert(`error sending e-mail: ${err.error_description}`);
+            alert('error sending e-mail: ' + err.error_description);
             return;
           }
           // the request was successful and you should 
           // receive the passcode to the specified phone
-          $(".enter-email").hide();
-          $(".email-sent").show();
+          $('.enter-email').hide();
+          $('.email-sent').show();
         });
       }
 
       $(document).ready(function() {
         var hash = auth0.parseHash(window.location.hash);
 
-        if (hash && hash.id_token) {
+        if (hash && hash.error) {
+          alert('There was an error: ' + hash.error + '\n' + hash.error_description);
+        }
+        else if (hash && hash.id_token) {
           //save the token in local storage:
           localStorage.setItem('id_token', hash.id_token);
           console.log('hash',hash);
@@ -88,13 +90,8 @@
             }
           });
         }
-
-        if (hash && hash.error) {
-          alert('There was an error: ' + hash.error + '\n' + hash.error_description);
-        }
-
       });
-
+      
     </script>
   </body>
 </html>

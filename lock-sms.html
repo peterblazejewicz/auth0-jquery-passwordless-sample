@@ -31,7 +31,7 @@
       </div>
     </div>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdn.auth0.com/js/lock-passwordless-0.js"></script>
+    <script src="https://cdn.auth0.com/js/lock-passwordless-0.1.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
         // Initialize Passwordless Lock instance
@@ -43,17 +43,12 @@
 
         $('.btn-login').click(function(e) {
           e.preventDefault();
-          // Open the lock in SMS mode with the ability to handle
-          // the authentication in page
-          lock.sms(function (err, profile, id_token, state) {
-            // to be called on failure or successfull authentication
-            if (err) {
-              // Error callback
-              console.log('There was an error',err);
-              alert('There was an error logging in');
-            } else {
-              // Success calback
-
+          var appearanceOpts = {
+            autoclose: true
+          };
+          // Open the lock in SMS mode with the ability to handle the authentication in page
+          lock.sms(appearanceOpts,function (err, profile, id_token, access_token, state, refresh_token) {
+            if (!err){
               // Save the JWT token.
               localStorage.setItem('userToken', id_token);
               console.log('profile',profile);
