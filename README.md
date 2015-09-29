@@ -1,30 +1,25 @@
-# Auth0 + jQuery + Passwordless
+# Auth0 jQuery Passwordless SPA Samples
 
 This set of samples shows how you can use passwordless authentication in your single page application. There are samples for both SMS and Email connections and both using the Auth0 Lock widget or a custom UI.
 
-## Scenarios
+## Key Features
 
-This sample contamplates different scenarios. For each of them, you should refer to the corresponding documentation in order to properly configure the connection in your dashboard.
+Single Page Passwordless samples include:
 
-### 1. Authenticate users with a one time code via SMS 
+* Login with a **one time code** via **sms** using **Lock**
+* Login with a **one time code** via **email** using **Lock**
+* Login with a **magic link** via **email** using **Lock**
+* Login with a **one time code** via **sms** using your **own UI**
+* Login with a **one time code** via **email** using your **own UI**
+* Login with a **magic link** via **email** using your **own UI**
 
-* [Documentation](https://auth0.com/docs/connections/passwordless/spa-sms)
-* [Sample using Lock](./lock-sms.html)
-* [Sample using a Custom UI](./custom-sms.html)
+You can read more about Passwordless Authentication on our [Doc's Site](https://auth0.com/docs/connections/passwordless), where you will find the complete Single Page App tutorials for:
 
-### 2. Authenticate users with a one time code via Email 
+* [Authenticate users with a one time code via SMS](https://auth0.com/docs/connections/passwordless/spa-sms)
+* [Authenticate users with a one time code via Email](https://auth0.com/docs/connections/passwordless/spa-email-code)
+* [Authenticate users with a magic link via Email](https://auth0.com/docs/connections/passwordless/spa-email-link)
 
-* [Documentation](https://auth0.com/docs/connections/passwordless/spa-email-code)
-* [Sample using Lock](./lock-email-code.html)
-* [Sample using a Custom UI](./custom-email-code.html)
-
-### 3. Authenticate users with a magic link via Email 
-
-* [Documentation](https://auth0.com/docs/connections/passwordless/spa-email-link)
-* [Sample using Lock](./lock-magic-link.html)
-* [Sample using a Custom UI](./custom-magic-link.html)
-
-## Running the samples locally
+## Install locally
 
 1. Create an auth0-variables.js file with your Auth0 credentials. You can use auth0-variables.sample.js as a template. You can get the clientId and domain from the [Auth0 Dashboard](https://manage.auth0.com).
 2. In your App's configuration on the [Auth0 Dashboard](https://manage.auth0.com), add `http://localhost:3000` to the **Allowed Origins (CORS)** list in order for the one time code samples to work, and add `http://localhost:3000/custom-magic-link.html, http://localhost:3000/lock-magic-link.html` to the **Allowed Callback URLs** list for the magic link samples to function. 
@@ -32,7 +27,7 @@ This sample contamplates different scenarios. For each of them, you should refer
 	* Install node
 	* run `npm install -g serve`
 	* run `serve` in the project's folder to start a server
-4. Go to the [index page](http://localhost:3000) and select the scenario you want to try.
+4. Go to the [index page](http://localhost:3000) and select the scenario you want to try. 
 
 ## What is Auth0?
 
