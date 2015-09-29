@@ -20,9 +20,10 @@
     <div class="container">
         <div class="login-page clearfix">
           <div class="login-box auth0-box before">
-            <img src="https://i.cloudup.com/StzWWrY34s.png" />
+            <img class="logo" src="https://i.cloudup.com/StzWWrY34s.png" />
             <h3>Auth0 Passwordless Example</h3>
             <p>Login with Email Code</p>
+            <div class="alert alert-warning">Don't forget to add your page's origin <strong><script type="text/javascript">document.write(location.origin)</script></strong> to your App's <strong>Allowed Origins (CORS)</strong> in the <a target="_blank" href="https://manage.auth0.com">Auth0 dashboard</a>, unless it is already in the list of <strong>Allowed Callback URLs.</strong></div>
             <button onclick="login()" class="btn btn-primary btn-lg btn-login btn-block">SignIn</button>
           </div>
           <div class="logged-in-box auth0-box logged-in" style="display: none;">
@@ -42,9 +43,10 @@
       );
 
       function login(){
+
         // Open the lock in Email Code mode with the ability to handle
         // the authentication in page
-        lock.emailcode( {callbackURL: location.href} , function(err, profile, id_token, state) {
+        lock.emailcode( function(err, profile, id_token, state) {
           if (!err) {
             console.log('profile',profile);
             console.log('id_token',profile);
