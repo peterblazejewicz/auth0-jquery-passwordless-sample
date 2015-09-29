@@ -44,7 +44,8 @@
         $('.btn-login').click(function(e) {
           e.preventDefault();
           var appearanceOpts = {
-            autoclose: true
+            autoclose: true,
+            callbackURL: location.href
           };
           // Open the lock in SMS mode with the ability to handle the authentication in page
           lock.sms(appearanceOpts,function (err, profile, id_token, access_token, state, refresh_token) {

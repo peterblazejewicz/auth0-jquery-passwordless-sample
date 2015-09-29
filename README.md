@@ -39,8 +39,6 @@ This sample contamplates different scenarios. For each of them, you should refer
 	* Send Magic Link by Email using Lock: `http://localhost:3000/lock-magic-link.html`
 	* Send Magic Link by Email using a custom UI and Auth0-js: `http://localhost:3000/custom-magic-link.html`
 
-	> Make sure the first callback URL configured in the dashboard is the URL corresponding to the sample you are running at each time.
-
 ## What is Auth0?
 
 Auth0 helps you to:

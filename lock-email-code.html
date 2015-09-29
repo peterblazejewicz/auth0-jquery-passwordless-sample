@@ -44,7 +44,7 @@
       function login(){
         // Open the lock in Email Code mode with the ability to handle
         // the authentication in page
-        lock.emailcode(function(err, profile, id_token, state) {
+        lock.emailcode( {callbackURL: location.href} , function(err, profile, id_token, state) {
           if (!err) {
             console.log('profile',profile);
             console.log('id_token',profile);
