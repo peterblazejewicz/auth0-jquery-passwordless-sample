@@ -1,0 +1,15 @@
+{
+  "name": "auth0-jquery-passwordless-sample",
+  "version": "1.0.0",
+  "description": "This set of samples shows how you can use passwordless authentication in your single page application. There are samples for both SMS and Email connections and both using the Auth0 Lock widget or a custom UI.",
+  "private": true,
+  "scripts": {
+    "start": "browser-sync start --server --files='*.html' --index='index.html' --no-ui",
+    "serve": "npm start"
+  },
+  "author": "Auth0",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.18.6"
+  }
+}
