@@ -31,4 +31,3 @@ config.json
 data.json
 *.env
 dist
-auth0-variables.js
