@@ -21,7 +21,15 @@ You can read more about Passwordless Authentication on our [Doc's Site](https://
 
 ## Install locally
 
-1. Create an auth0-variables.js file with your Auth0 credentials. You can use auth0-variables.sample.js as a template. You can get the clientId and domain from the [Auth0 Dashboard](https://manage.auth0.com).
+1. Update content of the `auth0-variables.js` file with your Auth0 credentials:
+
+	```js
+	var AUTH0_CLIENT_ID='{CLIENT_ID}';
+	var AUTH0_DOMAIN='{DOMAIN}';
+	```
+
+	> You can get the `{CLIENT_ID}` and `{DOMAIN}` values from the [Auth0 Dashboard](https://manage.auth0.com).
+
 2. In your App's configuration on the [Auth0 Dashboard](https://manage.auth0.com), add `http://localhost:3000` to the **Allowed Origins (CORS)** list in order for the one time code samples to work, and add `http://localhost:3000/custom-magic-link.html, http://localhost:3000/lock-magic-link.html` to the **Allowed Callback URLs** list for the magic link samples to function. 
 3. Initialize a web server in the samples folder. You can do it for instance with `serve`:
 	* Install node
