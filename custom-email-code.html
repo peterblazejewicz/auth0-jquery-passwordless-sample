@@ -20,7 +20,7 @@
           <h3>Auth0 Passwordless Example</h3>
           <p>Login with Email Code</p>
           <div class="enter-email">
-            <div class="alert alert-warning">Don't forget to add your page's origin <strong><script type="text/javascript">document.write(location.origin)</script></strong> to your App's <strong>Allowed Origins (CORS)</strong> in the <a target="_blank" href="https://manage.auth0.com">Auth0 dashboard</a>, unless it is already in the list of <strong>Allowed Callback URLs.</strong>
+            <div class="alert alert-warning">Don't forget to add your page's origin <strong><script>document.write(location.origin)</script></strong> to your App's <strong>Allowed Origins (CORS)</strong> in the <a target="_blank" href="https://manage.auth0.com">Auth0 dashboard</a>, unless it is already in the list of <strong>Allowed Callback URLs.</strong>
             </div>
             <label>Enter your email: </label>
             <input class="email"/>
@@ -45,7 +45,7 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
     <script src="auth0-variables.js"></script>
     <script src="https://cdn.auth0.com/w2/auth0-6.7.min.js"></script>
-    <script type="text/javascript">
+    <script>
       // Initialize Auth0 Client instance
       var auth0 = new Auth0({
         // All these properties are set in auth0-variables.js
